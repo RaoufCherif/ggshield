@@ -310,5 +310,5 @@ class TestConfig:
 
         assert not Path(DEFAULT_LOCAL_CONFIG_PATH).exists()
 
-        dct = load_yaml_dict(local_config_path)
+        dct = load_yaml_dict(Path(local_config_path))
         assert dct["instance"] == "https://after.com"

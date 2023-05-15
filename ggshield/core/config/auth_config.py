@@ -1,6 +1,7 @@
 from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, List, Optional, cast
 
 import marshmallow_dataclass
@@ -122,7 +123,7 @@ class AuthConfig:
         """Load the auth config from the app config file"""
         config_path = get_auth_config_filepath()
 
-        data = load_yaml_dict(config_path)
+        data = load_yaml_dict(Path(config_path))
         if data:
             data = prepare_auth_config_dict_for_parse(data)
             return AuthConfigSchema().load(data)  # type: ignore

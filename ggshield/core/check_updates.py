@@ -1,6 +1,7 @@
 import logging
 import os.path
 import time
+from pathlib import Path
 from typing import Optional, Tuple
 
 import requests
@@ -31,7 +32,7 @@ def _split_version(version: str) -> Tuple[int, ...]:
 def load_last_check_time() -> Optional[float]:
     """Returns the last time we checked, or None if not available"""
     try:
-        cached_data = load_yaml_dict(CACHE_FILE)
+        cached_data = load_yaml_dict(Path(CACHE_FILE))
         if cached_data is None:
             # File does not exist, do not log any warning
             return None

@@ -1,6 +1,7 @@
 import logging
 import os
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 import marshmallow_dataclass
@@ -159,7 +160,9 @@ class UserConfig(FilteredConfig):
     def _update_from_file(self, config_path: str) -> None:
 
         try:
-            data = load_yaml_dict(config_path) or {"version": CURRENT_CONFIG_VERSION}
+            data = load_yaml_dict(Path(config_path)) or {
+                "version": CURRENT_CONFIG_VERSION
+            }
             config_version = data.pop("version", 1)
             if config_version == 2:
                 _fix_ignore_known_secrets(data)

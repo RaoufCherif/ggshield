@@ -23,7 +23,7 @@ def replace_in_keys(data: Union[List, Dict], old_char: str, new_char: str) -> No
             replace_in_keys(element, old_char=old_char, new_char=new_char)
 
 
-def load_yaml_dict(path: str) -> Optional[Dict[str, Any]]:
+def load_yaml_dict(path: Path) -> Optional[Dict[str, Any]]:
     if not os.path.isfile(path):
         return None
 
